@@ -7,7 +7,7 @@ import os
 import bs4
 
 url = 'http://xkcd.com' # starting url
-os.makedirs('xkcd', exists_ok=True) # store comics in ./xkcd
+os.makedirs('xkcd', exist_ok=True) # store comics in ./xkcd
 
 while not url.endswith('#'):
     # Download the page.
