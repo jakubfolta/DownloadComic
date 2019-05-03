@@ -40,7 +40,7 @@ while not url.endswith('#'):
             image_file.write(chunk)
         image_file.close()
 
-    # TODO: Get the Prev button's url.
+    # Get the Prev button's url.
     prev_link = result_text.select('s[rel="prev"]')[0]
     url = 'http://xkcd.com' + prev_link.get('href')
 
