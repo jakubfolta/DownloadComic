@@ -15,7 +15,7 @@ while not url.endswith('#'):
     result = requests.get(url)
     result.raise_for_status()
 
-    # TODO: Find the URL of the comic image.
+    # Find the URL of the comic image.
     result_text = bs4.BeautifulSoup(result.text)
     image_element = result_text.select('#comic img')
     if image_element == []:
@@ -24,7 +24,7 @@ while not url.endswith('#'):
         try:
             comic_url = 'http:' + image_element[0].get('src')
 
-    # TODO: Download the image.
+    # Download the image.
             print('Downloading image {}'.format(comic_url))
             result = requests.get(comic_url)
             result.raise_for_status()
@@ -34,8 +34,7 @@ while not url.endswith('#'):
             url = 'http://xkcd.com' + prev_link.get('href')
             continue
 
-
-    # TODO: Save the image to ./xkcd.
+    # Save the image to ./xkcd.
         image_file = open(os.path.join('xkcd', os.path.basename(comic_url)), 'wb')
         for chunk in result.iter_content(100000):
             image_file.write(chunk)
