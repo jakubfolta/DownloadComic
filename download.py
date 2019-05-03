@@ -11,11 +11,16 @@ os makedirs('xkcd', exists_ok=True) # store comics in ./xkcd
 
 while not url.endswith('#'):
     # TODO: Download the page.
-    # TODO:
-    # TODO:
-    # TODO:
-    # TODO:
-    # TODO:
+    result = requests.get(url)
+    result.raise_for_status()
+
+    # TODO: Find the URL of the comic image.
+
+    # TODO: Download the image.
+    # TODO: Save the image to ./xkcd.
+    # TODO: Get the Prev button's url.
+
+print('Done.')
 
 
 # TODO: Change project status - github
