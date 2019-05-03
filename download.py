@@ -46,5 +46,4 @@ while not url.endswith('#'):
 
 print('Done.')
 
-
-# TODO: Change project status - github
+# Change project status - github
