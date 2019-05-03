@@ -7,7 +7,7 @@ import os
 import bs4
 
 url = 'http://xkcd.com' # starting url
-os makedirs('xkcd', exists_ok=True) # store comics in ./xkcd
+os.makedirs('xkcd', exists_ok=True) # store comics in ./xkcd
 
 while not url.endswith('#'):
     # Download the page.
@@ -41,7 +41,7 @@ while not url.endswith('#'):
         image_file.close()
 
     # Get the Prev button's url.
-    prev_link = result_text.select('s[rel="prev"]')[0]
+    prev_link = result_text.select('a[rel="prev"]')[0]
     url = 'http://xkcd.com' + prev_link.get('href')
 
 print('Done.')
