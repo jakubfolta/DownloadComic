@@ -19,7 +19,7 @@ while not url.endswith('1'):
 
 # Parse website and retrieve image element.
     result_text = bs4.BeautifulSoup(result.text)
-    image_element = result_text.select('#comic a')
+    image_element = result_text.select('#comic img')
     if image_element == []:
         print('Could not find image file!')
     else:
@@ -36,7 +36,7 @@ while not url.endswith('1'):
             continue
 
 # Save it to hard drive.
-        image_file = open(os.path.join('xkcd', os..path.basename(comic_url)), 'wb')
+        image_file = open(os.path.join('xkcd', os.path.basename(comic_url)), 'wb')
         for chunk in result.iter_content(100000):
             image_file.write(chunk)
         image_file.close()
