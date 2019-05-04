@@ -9,7 +9,7 @@ import bs4
 import logging
 
 logging.basicConfig(level = logging.DEBUG, format = '%(levelname)s, %(message)s')
-#logging.disable(logging.CRITICAL)
+logging.disable(logging.CRITICAL)
 
 # Set basic url and create directory to save comics.
 url = 'http://xkcd.com'
