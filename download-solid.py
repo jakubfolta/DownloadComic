@@ -30,7 +30,7 @@ while not url.endswith('1'):
         try:
             comic_url = 'http:' + image_element[0].get('src')
 
-# TODO: Download comic.
+# Download comic.
             print('Downloading comic: {}'.format(os.path.basename(comic_url)))
             result = requests.get(comic_url)
             result.raise_for_status()
@@ -39,6 +39,15 @@ while not url.endswith('1'):
             prev_element = result_text.select('a[rel="prev"]')[0]
             url = 'http://xkcd.com' + prev_element.get('href')
             continue
-            
-# TODO: Save it to a file.
-# TODO: Change url to previous page.
+
+# Save it to ./xkcd.
+        image_file = open(os.path.join('xkcd', os.path.basename(comic_url)), 'wb')
+        for chunk in result.iter_content(100000):
+            image_file.write(chunk)
+        image_file.close()
+
+# Change url to previous page.
+    prev_element = result_text.select('a[rel="prev"]')[0]
+    url = 'http://xkcd.com' + prev_element.get('href')
+
+print('Done!')
