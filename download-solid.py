@@ -21,15 +21,24 @@ while not url.endswith('1'):
     result = requests.get(url)
     result.raise_for_status()
 
-# TODO: Parse website and retrieve image url element.
+# Parse website and retrieve image url element.
     result_text = bs4.BeautifulSoup(result.text)
     image_element = result_text.select('#comic img')
     if image_element == []:
         print('Could not find comic image.')
     else:
         try:
-            comic_url = 'http:' + image_element
+            comic_url = 'http:' + image_element[0].get('src')
 
 # TODO: Download comic.
+            print('Downloading comic: {}'.format(os.path.basename(comic_url)))
+            result = requests.get(comic_url)
+            result.raise_for_status()
+        except requests.exceptions.MissingSchema:
+            logging.info('Not valid URL!')
+            prev_element = result_text.select('a[rel="prev"]')[0]
+            url = 'http://xkcd.com' + prev_element.get('href')
+            continue
+            
 # TODO: Save it to a file.
 # TODO: Change url to previous page.
