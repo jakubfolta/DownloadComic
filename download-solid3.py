@@ -29,6 +29,7 @@ while not url.endswith('#'):
             comic_url = 'http:' + image_element[0].get('src')
 
 # Download comic using requests module.
+            print('Downloading comic {}'.format(comic_url))
             result = requests.get(comic_url)
             result.raise_for_status()
         except requests.exceptions.MissingSchema:
