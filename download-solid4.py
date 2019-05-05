@@ -13,7 +13,6 @@ os.makedirs('xkcd', exist_ok=True)
 
 # In a while loop download webpage using requests module, check for error.
 while not url.endswith('#'):
-    print('Downloading page {}'.format(url))
     result = requests.get(url)
     result.raise_for_status()
 
@@ -27,7 +26,7 @@ while not url.endswith('#'):
 
 # Create comic url, download it. If error occurs go to next comic.
             comic_url = 'http:' + image_element[0].get('src')
-            print('Downloading comic ---------- {}'.format(os))
+            print('Downloading comic ---------- {}'.format(os.path.basename(comic_url)))
             result = requests.get(comic_url)
             result.raise_for_status()
         except requests.exceptions.MissingSchema:
